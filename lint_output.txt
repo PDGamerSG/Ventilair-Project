@@ -1,0 +1,54 @@
+
+> nextjs-app@0.1.0 lint
+> eslint
+
+
+D:\Data\Projects\Ventilair Project using Next js\nextjs-app\src\app\about\page.tsx
+  2:10  warning  'Award' is defined but never used         @typescript-eslint/no-unused-vars
+  2:17  warning  'Globe' is defined but never used         @typescript-eslint/no-unused-vars
+  2:24  warning  'History' is defined but never used       @typescript-eslint/no-unused-vars
+  2:33  warning  'TrendingUp' is defined but never used    @typescript-eslint/no-unused-vars
+  2:45  warning  'CheckCircle2' is defined but never used  @typescript-eslint/no-unused-vars
+  3:8   warning  'Footer' is defined but never used        @typescript-eslint/no-unused-vars
+
+D:\Data\Projects\Ventilair Project using Next js\nextjs-app\src\app\products\ProductsPageClient.tsx
+  278:13  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+D:\Data\Projects\Ventilair Project using Next js\nextjs-app\src\app\products\ProductsPageClient.tsx:278:13
+  276 |     useEffect(() => {
+  277 |         if (selectedProduct) {
+> 278 |             setCurrentImageIndex(0);
+      |             ^^^^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  279 |             document.body.style.overflow = 'hidden';
+  280 |         } else {
+  281 |             document.body.style.overflow = '';  react-hooks/set-state-in-effect
+
+D:\Data\Projects\Ventilair Project using Next js\nextjs-app\src\components\Navbar.tsx
+  31:8  warning  React Hook useEffect has a missing dependency: 'bannerMessages.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\Data\Projects\Ventilair Project using Next js\nextjs-app\src\context\ThemeContext.tsx
+  19:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+D:\Data\Projects\Ventilair Project using Next js\nextjs-app\src\context\ThemeContext.tsx:19:9
+  17 |
+  18 |     useEffect(() => {
+> 19 |         setMounted(true);
+     |         ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  20 |         const savedTheme = localStorage.getItem('theme') as Theme;
+  21 |         if (savedTheme) {
+  22 |             setTheme(savedTheme);  react-hooks/set-state-in-effect
+
+Γ£û 9 problems (2 errors, 7 warnings)
+

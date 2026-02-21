@@ -1,26 +1,130 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+    --font-heading: var(--font-outfit), 'Inter', sans-serif;
+    --font-montserrat: var(--font-montserrat), sans-serif;
+    --font-poppins: var(--font-poppins), sans-serif;
+    --color-cyan-400: #22d3ee;
+    --color-cyan-500: #06b6d4;
+    --color-cyan-600: #0891b2;
+    --color-slate-800: #1e293b;
+    --color-slate-900: #0f172a;
+    --color-slate-950: #020617;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@layer base {
+    :root {
+        /* Light Theme (Cool Grey & Royal Blue) */
+        --bg-primary: #f1f5f9;
+        --bg-secondary: #ffffff;
+        --bg-card: #ffffff;
+
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+
+        --primary-cyan: #06b6d4;
+        --primary-blue: #2563eb;
+
+        --border-color: #cbd5e1;
+        --glass-bg: rgba(255, 255, 255, 0.85);
+        --glass-border: rgba(255, 255, 255, 0.5);
+
+        /* Gradients */
+        --gradient-hero-from: #e2e8f0;
+        --gradient-hero-via: #f1f5f9;
+        --gradient-hero-to: #f8fafc;
+    }
+
+    .dark {
+        /* Dark Theme (Aero-Tech) */
+        --bg-primary: #020617;
+        --bg-secondary: #0f172a;
+        --bg-card: #0f172a;
+
+        --text-primary: #f1f5f9;
+        --text-secondary: #94a3b8;
+
+        --primary-cyan: #06b6d4;
+        --primary-blue: #3b82f6;
+
+        --border-color: #1e293b;
+        --glass-bg: rgba(15, 23, 42, 0.6);
+        --glass-border: rgba(255, 255, 255, 0.08);
+
+        /* Gradients */
+        --gradient-hero-from: rgba(30, 58, 138, 0.2);
+        --gradient-hero-via: #020617;
+        --gradient-hero-to: #020617;
+    }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings use Montserrat for a bolder, more distinctive feel */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Montserrat', 'Poppins', sans-serif;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+}
+
+/* Premium Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-cyan);
+}
+
+/* Glassmorphism */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.text-gradient-cyan {
+    background: linear-gradient(135deg, var(--primary-cyan) 0%, var(--primary-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Hide scrollbar for horizontal scroll areas */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
